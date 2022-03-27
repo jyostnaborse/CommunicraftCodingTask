@@ -18,6 +18,15 @@ namespace CodingTask
                 {
                     switch (c)
                     {
+                        case '(':
+                            lastBracket.Push(c);  //to add the open bracket in stack
+                            break;
+                        case '[':
+                            lastBracket.Push(c);
+                            break;
+                        case '{':
+                            lastBracket.Push(c);
+                            break;
                         case ')':
                             if (lastBracket.Count == 0 || lastBracket.Pop() != '(')  //to remove and check the open bracket when the close bracket found
                                 return false;
@@ -30,15 +39,7 @@ namespace CodingTask
                             if (lastBracket.Count == 0 || lastBracket.Pop() != '{')
                                 return false;
                             break;
-                        case '(':
-                            lastBracket.Push(c);  //to add the open bracket in stack
-                            break;
-                        case '[':
-                            lastBracket.Push(c);
-                            break;
-                        case '{':
-                            lastBracket.Push(c);
-                            break;
+                        
                     }
                 }
                 if (lastBracket.Count == 0)
@@ -57,8 +58,8 @@ namespace CodingTask
 
         static void Main(string[] args)
         {
-
-            string strToCheck = "[{()}]";
+            Console.WriteLine("Please enter a string to check");
+            string strToCheck = Console.ReadLine();
             if (IsStringBalanced(strToCheck))
                 Console.WriteLine("{0} is balanced", strToCheck);
             else
