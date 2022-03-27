@@ -11,38 +11,46 @@ namespace CodingTask
 
         public static bool IsStringBalanced(string strInput)
         {
-            Stack<char> lastBracket = new Stack<char>();
-            foreach (var c in strInput)
+            try
             {
-                switch (c)
+                Stack<char> lastBracket = new Stack<char>();
+                foreach (var c in strInput)
                 {
-                    case ')':
-                        if (lastBracket.Count == 0 || lastBracket.Pop() != '(')  //to remove and check the open bracket when the close bracket found
-                            return false;
-                        break;
-                    case ']':
-                        if (lastBracket.Count == 0 || lastBracket.Pop() != '[')
-                            return false;
-                        break;
-                    case '}':
-                        if (lastBracket.Count == 0 || lastBracket.Pop() != '{')
-                            return false;
-                        break;
-                    case '(':
-                        lastBracket.Push(c);  //to add the open bracket in stack
-                        break;
-                    case '[':
-                        lastBracket.Push(c);
-                        break;
-                    case '{':
-                        lastBracket.Push(c);
-                        break;
+                    switch (c)
+                    {
+                        case ')':
+                            if (lastBracket.Count == 0 || lastBracket.Pop() != '(')  //to remove and check the open bracket when the close bracket found
+                                return false;
+                            break;
+                        case ']':
+                            if (lastBracket.Count == 0 || lastBracket.Pop() != '[')
+                                return false;
+                            break;
+                        case '}':
+                            if (lastBracket.Count == 0 || lastBracket.Pop() != '{')
+                                return false;
+                            break;
+                        case '(':
+                            lastBracket.Push(c);  //to add the open bracket in stack
+                            break;
+                        case '[':
+                            lastBracket.Push(c);
+                            break;
+                        case '{':
+                            lastBracket.Push(c);
+                            break;
+                    }
                 }
+                if (lastBracket.Count == 0)
+                    return true;
+                else
+                    return false;
             }
-            if (lastBracket.Count == 0)
-                return true;
-            else
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error Occured:" + ex.Message);
                 return false;
+            }
 
         }
 
